@@ -3,7 +3,8 @@
     "version": "0.0.1",
     "description": "An etherpad-lite to html converter. Based on the idea of e2h.middlemachine.com",
     "author": "Gerrit Giehl <gerrit.giehl@email-versand.net>",
-    "license": "AGPL",
+    "license": "AGPL-3.0",
+    "repository": "https://github.com/r4mp/ep_html_live_export",
 
     "contributors": [{
         "name": "dcht00",
@@ -14,7 +15,8 @@
     "tags": ["markdown", "markup", "html"],
 
     "dependencies": {
-        "marked": "*"
+        "marked": "*",
+        "async": "*"
     },
     "engines": {
         "node": "*"

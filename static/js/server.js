@@ -9,8 +9,12 @@ getMdPadHtmlDocument = function (pad_id, rev, cb) {
     pad_manager.getPad(pad_id, function (err, pad) {
         if(ERR(err, cb)) return;
 
+        var render_args = {
+            last_modified: new Date(pad.savedRevisions[0].timestamp)
+        };
+
         var header = eejs.require("ep_html_live_export/templates/header.html");
-        var footer = eejs.require("ep_html_live_export/templates/footer.html");
+        var footer = eejs.require("ep_html_live_export/templates/footer.html", render_args);
 
         getMdPadHtml(pad, rev, function (err, html) {
             if(ERR(err, cb)) return;

@@ -50,7 +50,7 @@ getMdPadHtml = function(pad, rev, cb) {
 
 getText = function(atext) {
     var lines = atext.text.slice(0, -1).split('\n'); 
-    var headerRx = /(^[#]+[:space:]*.*)/;
+    var headerRx = /(^[#]+[\ ]*.*)/;
     var toc = new Array();
     var toc_str = "";
     var text_new = "";
@@ -66,9 +66,8 @@ getText = function(atext) {
     }
     
     for(i=0; i < toc.length; i++) {
-        linktext = toc[i].replace(/(^[#]+[:space:]*)/, '');
-        console.log(linktext);
-        link = linktext.trim().replace(/\ /g, '-').replace(/[^0-9|a-z|^A-Z|^-]/g, '').toLowerCase();  
+        linktext = toc[i].replace(/(^[#]+[\ ]*)/, '').trim();
+        link = linktext.toLowerCase().replace(/^[\ ]*/, '').replace(/[^0-9|^a-z|^\ ]*/g, '').replace(/[\ ]{2,}/g, ' ').replace(/\ /g, '-').toLowerCase();  
         toc_str += '[' + linktext + '](#' + link + ')  \n';
     }
 

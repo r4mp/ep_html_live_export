@@ -1,0 +1,9 @@
+{
+    "parts": [{
+        "name": "html_live_export",
+        "hooks": {
+            "eejsBlock_editbarMenuLeft": "ep_html_live_export/static/js/disable_format:eejsBlock_editbarMenuLeft",
+            "expressCreateServer": "ep_html_live_export/static/js/server:expressCreateServer"
+        }
+    }]
+}

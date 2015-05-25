@@ -1,0 +1,22 @@
+{
+    "name": "ep_html_live_export",
+    "version": "0.0.1",
+    "description": "An etherpad-lite to html converter. Based on the idea of e2h.middlemachine.com",
+    "author": "Gerrit Giehl <gerrit.giehl@email-versand.net>",
+    "license": "AGPL",
+
+    "contributors": [{
+        "name": "dcht00",
+        "email": "david@middlemachine.com"
+    }],
+
+    "keywords": ["markdown", "markup", "html"],
+    "tags": ["markdown", "markup", "html"],
+
+    "dependencies": {
+        "marked": "*"
+    },
+    "engines": {
+        "node": "*"
+    }
+}

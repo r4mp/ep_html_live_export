@@ -62,7 +62,7 @@ getText = function(atext) {
             toc.push(lines[i]);
         }
 
-        text_new += lines[i] + '\n';
+        text_new += lines[i].replace(/^[\ ]*/g, '') + '\n';
     }
     
     for(i=0; i < toc.length; i++) {

@@ -3,18 +3,18 @@ var async = require('async');
 var pad_manager = require('ep_etherpad-lite/node/db/PadManager');
 var ERR = require('async-stacktrace');
 var eejs = require('ep_etherpad-lite/node/eejs');
+var express = require('ep_etherpad-lite/node_modules/express');
 
 getMdPadHtmlDocument = function (pad_id, rev, cb) {
     pad_manager.getPad(pad_id, function (err, pad) {
         if(ERR(err, cb)) return;
 
-        //var head = eejs.require(__dirname+"/templates/header.html");
-        var head = '<html>\n<head></head>\n<body>\n<link href="//totalism.org/E2H/font-ubuntu-mono" rel="stylesheet" type="text/css">\n<link rel="stylesheet" type="text/css" href="//totalism.org/E2H/css-normality2.css">'; // TODO: read from template file
-        var foot = '<div id="main_container">\n<div id="transclude" class="etherpad_container"></div>\n</div>\n</body>\n</html>';
+        var header = eejs.require("ep_html_live_export/templates/header.html");
+        var footer = eejs.require("ep_html_live_export/templates/footer.html");
 
         getMdPadHtml(pad, rev, function (err, html) {
             if(ERR(err, cb)) return;
-            cb(null, head + html + foot);
+            cb(null, header + html + footer);
         });
     });
 };
@@ -64,7 +64,7 @@ getText = function(atext) {
 
         text_new += lines[i].replace(/^[\ ]*/g, '') + '\n';
     }
-    
+
     for(i=0; i < toc.length; i++) {
         linktext = toc[i].replace(/(^[#]+[\ ]*)/, '').trim();
         link = linktext.toLowerCase().replace(/^[\ ]*/, '').replace(/[^0-9|^a-z|^\ ]*/g, '').replace(/[\ ]{2,}/g, ' ').replace(/\ /g, '-').toLowerCase();  
@@ -85,5 +85,7 @@ exports.expressCreateServer = function(hook_name, args, cb) {
         });        
 
     });
+
+    args.app.use('/export/html/static', express.static(__dirname + '/..'))
 };
 

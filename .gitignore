@@ -29,3 +29,5 @@ node_modules
 .ep_initialized
 
 *.swp
+
+static/css/css-normality2.css

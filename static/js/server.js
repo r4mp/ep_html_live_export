@@ -10,6 +10,7 @@ getMdPadHtmlDocument = function (pad_id, rev, cb) {
         if(ERR(err, cb)) return;
 
         var render_args = {
+            pad_id: pad_id,
             last_modified: new Date(pad.savedRevisions[0].timestamp)
         };
 

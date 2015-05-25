@@ -52,6 +52,7 @@ getText = function(atext) {
     var lines = atext.text.slice(0, -1).split('\n'); 
     var headerRx = /(^[#]+[:space:]?.*)/;
     var toc = new Array();
+    var toc_str = "";
     var text_new = "";
     var link = "";
 
@@ -64,15 +65,11 @@ getText = function(atext) {
     }
     
     for(i=0; i < toc.length; i++) {
-        link = (toc[i].trim()).replace('#', '');  
-        toc[i] = '[' + link + '](#' + link + ')\n';
-
-        if(i == toc.length) {
-            toc[i] += '\n';
-        }
+        link = toc[i].replace(/\ /g,'').replace(/#/g, '');  
+        toc_str += '[' + link + '](#' + link + ')  \n';
     }
 
-    return marked(text_new.replace('[TOC]', toc));
+    return marked(text_new.replace('[TOC]', toc_str));
 };
 
 exports.expressCreateServer = function(hook_name, args, cb) {

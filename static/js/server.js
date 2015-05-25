@@ -57,7 +57,7 @@ getText = function(atext) {
     var lines = atext.text.slice(0, -1).split('\n'); 
     var headerRx = /(^[#]+[\ ]*.*)/;
     var toc = new Array();
-    var toc_str = "";
+    var toc_str = "*Table of Contents*  \n  \n";
     var text_new = "";
     var link = "";
     var linktext = "";
@@ -73,7 +73,7 @@ getText = function(atext) {
     for(i=0; i < toc.length; i++) {
         linktext = toc[i].replace(/(^[#]+[\ ]*)/, '').trim();
         link = linktext.toLowerCase().replace(/^[\ ]*/, '').replace(/[^0-9|^a-z|^\ ]*/g, '').replace(/[\ ]{2,}/g, ' ').replace(/\ /g, '-').toLowerCase();  
-        toc_str += '[' + linktext + '](#' + link + ')  \n';
+        toc_str += i+1 + '. [' + linktext + '](#' + link + ')  \n';
     }
 
     return marked(text_new.replace('[TOC]', toc_str));
